@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DrawChat</title>
+    <link rel="stylesheet" href="bower_components/drawingboard.js/example/prism.css">
+    <link rel="stylesheet" href="bower_components/drawingboard.js/example/website.css">
+    <!-- in a production environment, just include the minified css. It contains the css of the board and the default controls (size, nav, colors): -->
+    <link rel="stylesheet" href="bower_components/drawingboard.js/dist/drawingboard.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="bower_components/drawingboard.js/dist/drawingboard.min.js"></script>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+</head>
+
+<body>
+    <!-- where the widget goes. you can do CSS to it. -->
+    <div class="drawing-container">
+        <h1> Drawing! </h1>
+        <div id="img-stream" style="width:auto;height:300px;overflow-x:visible;overflow-y:hidden;white-space:nowrap;"></div>
+        <div id="drawing" style="width:400px; height:400px;"></div>
+        <button id="post">Post</button>
+    </div>
+    <!-- kick it off -->
+    <!-- jquery is required - zepto might do the trick too -->
+    <!-- in a production environment, just include the minified script. It contains the board and the default controls (size, nav, colors, download): -->
+    <script>
+    myBoard = new DrawingBoard.Board('drawing');
+    myDataRef = new Firebase('https://radiant-heat-2818.firebaseio.com/');
+
+    var stamp_new_img = function(src) {
+        var tmpl = document.querySelector('template');
+        tmpl.content.querySelector('img').src = src;
+        var clone = document.importNode(tmpl.content, true);
+        var stream = document.querySelector('#img-stream');
+        stream.appendChild(clone);
+        stream.scrollLeft = stream.scrollWidth;	
+
+
+    }
+
+    myDataRef.on('child_added', function(snapshot) {
+    	console.log(snapshot);
+        stamp_new_img(snapshot.val().src);
+
+    });
+    $('#post').click(function(){
+    	var img = myBoard.getImg();
+    	myDataRef.push({src:img});
+    	myBoard.resetBackground();
+    });
+    </script>
+    <template id="imgbox-template">
+        <div class="imgbox" style='display:inline;'>
+            <style>
+            .imgbox img {
+                height: 300px;
+                ,
+                width: 300px;
+            }
+            </style>
+            <img src="">
+        </div>
+    </template>
+</body>
+
+</html>
