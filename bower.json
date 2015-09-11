@@ -1,0 +1,25 @@
+{
+  "name": "Drawchat",
+  "version": "0.0.0",
+  "homepage": "https://github.com/tekromancr/drawchat",
+  "authors": [
+    "George Griffin <george@verificient.com>"
+  ],
+  "description": "HTML5 picture chat app",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0",
+    "paper-header-panel": "PolymerElements/paper-header-panel#^1.0.0",
+    "paper-toolbar": "PolymerElements/paper-toolbar#^1.0.0",
+    "firebase-element": "PolymerElements/firebase-element#^1.0.0",
+    "drawingboard.js": "~0.4.6"
+  }
+}

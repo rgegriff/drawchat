@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DrawChat</title>
+    <!-- in a production environment, just include the minified css. It contains the css of the board and the default controls (size, nav, colors): -->
+    <!-- stylesheet -->
+    <link href="/bower_components/literallycanvas/css/literallycanvas.css" rel="stylesheet">
+    <!-- dependency: React.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react-with-addons.js"></script>
+    <!-- Literally Canvas -->
+    <script src="/bower_components/literallycanvas/js/literallycanvas.js"></script>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+
+    <link rel="import" href="drawchat-imagestream.html">
+</head>
+
+<body>
+    <!-- where the widget goes. you can do CSS to it. -->
+    <div class="drawing-container">
+        <h1> Drawing! </h1>
+        <!--
+        <div id="img-stream" style="width:auto;height:400px;overflow-x:visible;overflow-y:hidden;white-space:nowrap;"></div>-->
+        <drawchat-imagestream></drawchat-imagestream>
+        <button id="post">Post</button>
+    </div>
+    <div class="drawing_container" style="width:461px;height:431px;margin-left:auto;margin-right:auto;">
+        <div id="drawing"></div>
+    </div>
+    <template id="imgbox-template">
+        <div class="imgbox" style='display:inline;'>
+            <style>
+            .imgbox img {
+                height: 400px;
+                ,
+                width: 400px;
+            }
+            </style>
+            <img src="">
+        </div>
+    </template>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="bower_components/firebase-element/firebase-collection.html">
+<dom-module id="drawchat-imagestream">
+    <template>
+        <style>
+          .imgbox {
+
+          }
+
+          .imgcontainer {
+            padding: 5px;
+            background-color: grey;
+          }
+
+          .flexcontainer {
+          }
+        </style>
+        <!-- local DOM for your element -->
+        <div class="imgbox flexcontainer">
+            <firebase-collection order-by-child="height" limit-to-last="5" location="https://radiant-heat-2818.firebaseio.com/" data="{{images}}"></firebase-collection>
+            <template is="dom-repeat" items="[[images]]">
+              <div class="imgcontainer"><img src="{{item.src}}"/></div>
+            </template>
+        </div>
+    </template>
+    <script>
+    // element registration
+    Polymer({
+        is: "drawchat-imagestream"
+    });
+    </script>
+</dom-module>
